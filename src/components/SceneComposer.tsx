@@ -89,8 +89,8 @@ The accusation hung in the air, demanding an answer that might shatter everythin
 
   return (
     <div className="space-y-6">
-      <div className="studio-panel p-6">
-        <h2 className="studio-heading text-xl mb-4">Scene Composer</h2>
+      <div>
+        <h2 className="writer-heading text-xl mb-4">Scene Composer</h2>
         
         {/* Prompt Input */}
         <div className="space-y-4">
@@ -102,7 +102,7 @@ The accusation hung in the air, demanding an answer that might shatter everythin
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               placeholder="Describe the scene you want to create... (e.g., 'A tense confrontation between two characters who share a dark secret')"
-              className="min-h-[100px] bg-input/50 border-border/50 focus-visible:ring-accent resize-none"
+              className="min-h-[100px] bg-input border-border focus-visible:ring-ring resize-none text-base"
             />
           </div>
 
@@ -111,10 +111,10 @@ The accusation hung in the air, demanding an answer that might shatter everythin
             <div>
               <label className="block text-sm font-medium mb-2 text-muted-foreground">Genre</label>
               <Select value={selectedGenre} onValueChange={setSelectedGenre}>
-                <SelectTrigger className="bg-input/50 border-border/50">
+                <SelectTrigger className="bg-input border-border">
                   <SelectValue placeholder="Select genre" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-card border-border">
                   {genres.map(genre => (
                     <SelectItem key={genre} value={genre}>{genre}</SelectItem>
                   ))}
@@ -125,10 +125,10 @@ The accusation hung in the air, demanding an answer that might shatter everythin
             <div>
               <label className="block text-sm font-medium mb-2 text-muted-foreground">Tone</label>
               <Select value={selectedTone} onValueChange={setSelectedTone}>
-                <SelectTrigger className="bg-input/50 border-border/50">
+                <SelectTrigger className="bg-input border-border">
                   <SelectValue placeholder="Select tone" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-card border-border">
                   {tones.map(tone => (
                     <SelectItem key={tone} value={tone}>{tone}</SelectItem>
                   ))}
@@ -139,10 +139,10 @@ The accusation hung in the air, demanding an answer that might shatter everythin
             <div>
               <label className="block text-sm font-medium mb-2 text-muted-foreground">Scene Type</label>
               <Select value={selectedSceneType} onValueChange={setSelectedSceneType}>
-                <SelectTrigger className="bg-input/50 border-border/50">
+                <SelectTrigger className="bg-input border-border">
                   <SelectValue placeholder="Select type" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-card border-border">
                   {sceneTypes.map(type => (
                     <SelectItem key={type} value={type}>{type}</SelectItem>
                   ))}
@@ -161,12 +161,7 @@ The accusation hung in the air, demanding an answer that might shatter everythin
                 <Badge
                   key={character.id}
                   variant={selectedCharacters.includes(character.id) ? 'default' : 'outline'}
-                  className="cursor-pointer studio-button hover:scale-105"
-                  style={{
-                    background: selectedCharacters.includes(character.id) 
-                      ? 'var(--gradient-primary)' 
-                      : 'transparent'
-                  }}
+                  className="cursor-pointer writer-button hover:shadow-sm"
                   onClick={() => toggleCharacter(character.id)}
                 >
                   {character.name}
@@ -184,13 +179,8 @@ The accusation hung in the air, demanding an answer that might shatter everythin
               {themes.map(theme => (
                 <Badge
                   key={theme.id}
-                  variant={selectedThemes.includes(theme.id) ? 'default' : 'outline'}
-                  className="cursor-pointer studio-button hover:scale-105"
-                  style={{
-                    background: selectedThemes.includes(theme.id) 
-                      ? 'var(--gradient-accent)' 
-                      : 'transparent'
-                  }}
+                  variant={selectedThemes.includes(theme.id) ? 'secondary' : 'outline'}
+                  className="cursor-pointer writer-button hover:shadow-sm"
                   onClick={() => toggleTheme(theme.id)}
                 >
                   {theme.name}
@@ -203,8 +193,7 @@ The accusation hung in the air, demanding an answer that might shatter everythin
           <Button
             onClick={generateScene}
             disabled={!prompt.trim() || isGenerating}
-            className="w-full studio-button"
-            style={{ background: 'var(--gradient-primary)' }}
+            className="w-full writer-button bg-primary text-primary-foreground hover:bg-primary/90"
           >
             {isGenerating ? (
               <>
@@ -223,14 +212,14 @@ The accusation hung in the air, demanding an answer that might shatter everythin
 
       {/* Generated Scene Display */}
       {currentScene && (
-        <Card className="studio-panel p-6">
+        <div className="writer-panel p-6 mt-8">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="studio-heading text-lg">Generated Scene</h3>
+            <h3 className="writer-heading text-lg">Generated Scene</h3>
             <Button
               onClick={regenerateScene}
               variant="outline"
               size="sm"
-              className="studio-button"
+              className="writer-button"
               disabled={isGenerating}
             >
               <RefreshCw className="h-4 w-4 mr-2" />
@@ -238,7 +227,7 @@ The accusation hung in the air, demanding an answer that might shatter everythin
             </Button>
           </div>
           
-          <div className="bg-muted/30 rounded-lg p-4 font-mono text-sm leading-relaxed whitespace-pre-wrap">
+          <div className="bg-muted/30 rounded-lg p-4 text-sm leading-relaxed whitespace-pre-wrap border border-border">
             {currentScene.generatedText}
           </div>
           
@@ -248,7 +237,7 @@ The accusation hung in the air, demanding an answer that might shatter everythin
             {currentScene.tone && <span>• {currentScene.tone}</span>}
             {currentScene.sceneType && <span>• {currentScene.sceneType}</span>}
           </div>
-        </Card>
+        </div>
       )}
     </div>
   );

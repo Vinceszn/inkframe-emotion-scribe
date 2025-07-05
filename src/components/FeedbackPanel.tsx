@@ -95,14 +95,13 @@ export function FeedbackPanel() {
 
   return (
     <div className="space-y-6">
-      <Card className="studio-panel p-6">
+      <div>
         <div className="flex items-center justify-between mb-4">
-          <h2 className="studio-heading text-xl">CritPartner Feedback</h2>
+          <h2 className="writer-heading text-xl">CritPartner Feedback</h2>
           <Button
             onClick={generateFeedback}
             disabled={!currentScene || isAnalyzing}
-            className="studio-button"
-            style={{ background: 'var(--gradient-accent)' }}
+            className="writer-button bg-primary text-primary-foreground hover:bg-primary/90"
           >
             {isAnalyzing ? (
               <>
@@ -125,29 +124,8 @@ export function FeedbackPanel() {
           </div>
         )}
 
-        {currentScene && !latestFeedback && !isAnalyzing && (
-          <div className="text-center py-8 text-muted-foreground">
-            <MessageSquare className="h-12 w-12 mx-auto mb-4 opacity-50" />
-            <p>Click "Get Feedback" to analyze your scene</p>
-          </div>
-        )}
-
-        {isAnalyzing && (
-          <div className="text-center py-8">
-            <div className="animate-studio-pulse">
-              <Brain className="h-12 w-12 mx-auto mb-4 text-accent" />
-            </div>
-            <p className="text-muted-foreground">Analyzing scene structure and emotional depth...</p>
-            <div className="mt-4 space-y-2 text-sm text-muted-foreground">
-              <div className="animate-studio-fade-in">Evaluating narrative coherence...</div>
-              <div className="animate-studio-fade-in animation-delay-1000">Analyzing dialogue quality...</div>
-              <div className="animate-studio-fade-in animation-delay-2000">Measuring emotional resonance...</div>
-            </div>
-          </div>
-        )}
-
         {latestFeedback && (
-          <div className="space-y-6 animate-studio-fade-in">
+          <div className="space-y-6 animate-fade-in">
             {/* Score Grid */}
             <div className="grid grid-cols-2 gap-4">
               {feedbackCategories.map(category => {
@@ -155,7 +133,7 @@ export function FeedbackPanel() {
                 const Icon = category.icon;
                 
                 return (
-                  <Card key={category.key} className="p-4 bg-muted/20 border-border/30">
+                  <Card key={category.key} className="p-4 bg-muted/20 border-border">
                     <div className="flex items-center gap-3 mb-3">
                       <Icon className="h-5 w-5 text-accent" />
                       <div>
@@ -165,15 +143,7 @@ export function FeedbackPanel() {
                     </div>
                     
                     <div className="flex items-center gap-3">
-                      <Progress 
-                        value={score * 10} 
-                        className="flex-1"
-                        style={{
-                          '--progress-background': score >= 8 ? 'hsl(var(--success))' : 
-                                                 score >= 6 ? 'hsl(var(--warning))' : 
-                                                 'hsl(var(--destructive))'
-                        } as React.CSSProperties}
-                      />
+                      <Progress value={score * 10} className="flex-1" />
                       <span className={`font-bold text-lg ${getScoreColor(score)}`}>
                         {score}/10
                       </span>
@@ -182,16 +152,6 @@ export function FeedbackPanel() {
                 );
               })}
             </div>
-
-            {/* Overall Score */}
-            <Card className="p-4 bg-gradient-to-r from-primary/10 to-accent/10 border-border/30">
-              <div className="text-center">
-                <div className="text-2xl font-bold mb-1">
-                  {(Object.values(latestFeedback.scores).reduce((a, b) => a + b, 0) / 4).toFixed(1)}/10
-                </div>
-                <div className="text-sm text-muted-foreground">Overall Score</div>
-              </div>
-            </Card>
 
             {/* Suggestions */}
             <div>
@@ -203,41 +163,16 @@ export function FeedbackPanel() {
                 {latestFeedback.suggestions.map((suggestion, index) => (
                   <div 
                     key={index}
-                    className="p-3 bg-muted/20 rounded-lg text-sm border border-border/30"
+                    className="p-3 bg-muted/20 rounded-lg text-sm border border-border"
                   >
                     {suggestion}
                   </div>
                 ))}
               </div>
             </div>
-
-            {/* Feedback History */}
-            {currentScene && currentScene.feedbackHistory.length > 1 && (
-              <div>
-                <h3 className="font-medium mb-3">Feedback History</h3>
-                <div className="space-y-2">
-                  {currentScene.feedbackHistory.slice(-3).reverse().map((feedback, index) => (
-                    <Card key={feedback.id} className="p-3 bg-muted/10 border-border/20">
-                      <div className="flex justify-between items-center text-xs text-muted-foreground mb-2">
-                        <span>Round {currentScene.feedbackHistory.length - index}</span>
-                        <span>{feedback.timestamp.toLocaleTimeString()}</span>
-                      </div>
-                      <div className="flex gap-4 text-sm">
-                        {feedbackCategories.map(cat => (
-                          <span key={cat.key} className="flex items-center gap-1">
-                            <cat.icon className="h-3 w-3" />
-                            {feedback.scores[cat.key]}
-                          </span>
-                        ))}
-                      </div>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
         )}
-      </Card>
+      </div>
     </div>
   );
 }

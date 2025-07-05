@@ -26,8 +26,7 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))',
-					glow: 'hsl(var(--primary-glow))'
+					foreground: 'hsl(var(--primary-foreground))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -43,8 +42,7 @@ export default {
 				},
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))',
-					glow: 'hsl(var(--accent-glow))'
+					foreground: 'hsl(var(--accent-foreground))'
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
@@ -85,50 +83,21 @@ export default {
 						height: '0'
 					}
 				},
-				'studio-fade-in': {
+				'fade-in': {
 					'0%': {
 						opacity: '0',
-						transform: 'translateY(20px) scale(0.95)'
+						transform: 'translateY(10px)'
 					},
 					'100%': {
 						opacity: '1',
-						transform: 'translateY(0) scale(1)'
-					}
-				},
-				'studio-slide-in': {
-					'0%': {
-						opacity: '0',
-						transform: 'translateX(-20px)'
-					},
-					'100%': {
-						opacity: '1',
-						transform: 'translateX(0)'
-					}
-				},
-				'studio-pulse': {
-					'0%, 100%': {
-						opacity: '1'
-					},
-					'50%': {
-						opacity: '0.7'
-					}
-				},
-				'neon-glow': {
-					'0%, 100%': {
-						textShadow: '0 0 5px hsl(var(--accent)), 0 0 10px hsl(var(--accent)), 0 0 15px hsl(var(--accent))'
-					},
-					'50%': {
-						textShadow: '0 0 10px hsl(var(--accent)), 0 0 20px hsl(var(--accent)), 0 0 30px hsl(var(--accent))'
+						transform: 'translateY(0)'
 					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'studio-fade-in': 'studio-fade-in 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
-				'studio-slide-in': 'studio-slide-in 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-				'studio-pulse': 'studio-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-				'neon-glow': 'neon-glow 2s ease-in-out infinite'
+				'fade-in': 'fade-in 0.3s ease-out'
 			}
 		}
 	},

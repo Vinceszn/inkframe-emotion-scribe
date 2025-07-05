@@ -9,15 +9,15 @@ export function CharacterPanel() {
   return (
     <div className="space-y-6">
       {/* Characters */}
-      <Card className="studio-panel p-6">
-        <h2 className="studio-heading text-lg mb-4 flex items-center gap-2">
+      <div className="writer-panel p-6">
+        <h2 className="writer-heading text-lg mb-4 flex items-center gap-2">
           <Users className="h-5 w-5 text-accent" />
           Character Memory
         </h2>
         
         <div className="space-y-4">
           {characters.map(character => (
-            <Card key={character.id} className="p-4 bg-muted/20 border-border/30">
+            <Card key={character.id} className="p-4 bg-muted/20 border-border">
               <div className="flex items-start gap-3">
                 <User className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
                 <div className="flex-1 min-w-0">
@@ -57,18 +57,18 @@ export function CharacterPanel() {
             </Card>
           ))}
         </div>
-      </Card>
+      </div>
 
       {/* Themes */}
-      <Card className="studio-panel p-6">
-        <h2 className="studio-heading text-lg mb-4 flex items-center gap-2">
+      <div className="writer-panel p-6">
+        <h2 className="writer-heading text-lg mb-4 flex items-center gap-2">
           <Scroll className="h-5 w-5 text-accent" />
           Theme Library
         </h2>
         
         <div className="space-y-3">
           {themes.map(theme => (
-            <Card key={theme.id} className="p-3 bg-muted/20 border-border/30">
+            <Card key={theme.id} className="p-3 bg-muted/20 border-border">
               <div className="flex items-start gap-3">
                 <div className="w-2 h-2 rounded-full bg-accent mt-2 flex-shrink-0"></div>
                 <div className="flex-1 min-w-0">
@@ -91,7 +91,7 @@ export function CharacterPanel() {
             </Card>
           ))}
         </div>
-      </Card>
+      </div>
     </div>
   );
 }
