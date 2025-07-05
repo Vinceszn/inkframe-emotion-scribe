@@ -1,0 +1,40 @@
+{
+  "themes": [
+    {
+      "id": "faith-doubt",
+      "name": "Faith vs Doubt",
+      "description": "The tension between belief and skepticism",
+      "keywords": ["belief", "questioning", "spirituality", "crisis", "conviction"]
+    },
+    {
+      "id": "obsession",
+      "name": "Obsession",
+      "description": "The consuming nature of single-minded pursuit",
+      "keywords": ["fixation", "compulsion", "tunnel vision", "sacrifice", "cost"]
+    },
+    {
+      "id": "control-chaos",
+      "name": "Control vs Chaos",
+      "description": "The illusion of control in an unpredictable world",
+      "keywords": ["order", "unpredictability", "planning", "adaptation", "surrender"]
+    },
+    {
+      "id": "identity",
+      "name": "Identity",
+      "description": "Who we are versus who we think we should be",
+      "keywords": ["self-discovery", "authenticity", "masks", "transformation", "belonging"]
+    },
+    {
+      "id": "sacrifice",
+      "name": "Sacrifice",
+      "description": "What we give up for what we want",
+      "keywords": ["cost", "trade-offs", "values", "priorities", "consequences"]
+    },
+    {
+      "id": "connection",
+      "name": "Connection",
+      "description": "The human need for understanding and belonging",
+      "keywords": ["relationships", "loneliness", "understanding", "empathy", "isolation"]
+    }
+  ]
+}

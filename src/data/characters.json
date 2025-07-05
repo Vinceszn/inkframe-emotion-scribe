@@ -1,0 +1,40 @@
+{
+  "characters": [
+    {
+      "id": "ada",
+      "name": "Ada Chen",
+      "description": "Witty, skeptical teenager with sharp observational skills",
+      "arc": "Coming of age through crisis of faith",
+      "tone": "Observant, dry humor, occasionally vulnerable",
+      "traits": ["analytical", "guarded", "loyal"],
+      "background": "Lives with grandmother after parents' divorce, struggles with trust"
+    },
+    {
+      "id": "marcus",
+      "name": "Marcus Williams",
+      "description": "Charismatic leader with hidden insecurities",
+      "arc": "Fall from grace and redemption",
+      "tone": "Confident exterior, desperate interior",
+      "traits": ["persuasive", "ambitious", "haunted"],
+      "background": "Former golden child now carrying family expectations and secrets"
+    },
+    {
+      "id": "elena",
+      "name": "Elena Rodriguez",
+      "description": "Quiet artist who sees beauty in darkness",
+      "arc": "Finding voice through creative expression",
+      "tone": "Introspective, poetic, fierce when pushed",
+      "traits": ["empathetic", "intuitive", "resilient"],
+      "background": "Immigrant family, uses art to process complex emotions and experiences"
+    },
+    {
+      "id": "david",
+      "name": "David Kim",
+      "description": "Tech-savvy strategist with moral compass",
+      "arc": "Learning when to bend rules for greater good",
+      "tone": "Logical, principled, surprisingly warm",
+      "traits": ["methodical", "ethical", "protective"],
+      "background": "Youngest of four siblings, pressure to succeed while maintaining integrity"
+    }
+  ]
+}
