@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { Card } from '@/components/ui/card';
+import { EditableScene } from './EditableScene';
 import { useInkframeStore, SceneData } from '@/store/inkframe-store';
 import { Loader2, Wand2, RefreshCw } from 'lucide-react';
 
@@ -84,6 +84,16 @@ The accusation hung in the air, demanding an answer that might shatter everythin
   const regenerateScene = () => {
     if (currentScene) {
       generateScene();
+    }
+  };
+
+  const handleSceneUpdate = (updatedText: string) => {
+    if (currentScene) {
+      const updatedScene: SceneData = {
+        ...currentScene,
+        generatedText: updatedText
+      };
+      setCurrentScene(updatedScene);
     }
   };
 
@@ -190,54 +200,46 @@ The accusation hung in the air, demanding an answer that might shatter everythin
           </div>
 
           {/* Generate Button */}
-          <Button
-            onClick={generateScene}
-            disabled={!prompt.trim() || isGenerating}
-            className="w-full writer-button bg-primary text-primary-foreground hover:bg-primary/90"
-          >
-            {isGenerating ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Generating Scene...
-              </>
-            ) : (
-              <>
-                <Wand2 className="mr-2 h-4 w-4" />
-                Generate Scene
-              </>
+          <div className="flex gap-2">
+            <Button
+              onClick={generateScene}
+              disabled={!prompt.trim() || isGenerating}
+              className="flex-1 writer-button bg-primary text-primary-foreground hover:bg-primary/90"
+            >
+              {isGenerating ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Generating Scene...
+                </>
+              ) : (
+                <>
+                  <Wand2 className="mr-2 h-4 w-4" />
+                  Generate Scene
+                </>
+              )}
+            </Button>
+            
+            {currentScene && (
+              <Button
+                onClick={regenerateScene}
+                variant="outline"
+                className="writer-button"
+                disabled={isGenerating}
+              >
+                <RefreshCw className="h-4 w-4 mr-2" />
+                Regenerate
+              </Button>
             )}
-          </Button>
+          </div>
         </div>
       </div>
 
-      {/* Generated Scene Display */}
+      {/* Editable Scene Display */}
       {currentScene && (
-        <div className="writer-panel p-6 mt-8">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="writer-heading text-lg">Generated Scene</h3>
-            <Button
-              onClick={regenerateScene}
-              variant="outline"
-              size="sm"
-              className="writer-button"
-              disabled={isGenerating}
-            >
-              <RefreshCw className="h-4 w-4 mr-2" />
-              Regenerate
-            </Button>
-          </div>
-          
-          <div className="bg-muted/30 rounded-lg p-4 text-sm leading-relaxed whitespace-pre-wrap border border-border">
-            {currentScene.generatedText}
-          </div>
-          
-          <div className="mt-4 flex flex-wrap gap-2 text-xs text-muted-foreground">
-            <span>Generated: {currentScene.timestamp.toLocaleTimeString()}</span>
-            {currentScene.genre && <span>• {currentScene.genre}</span>}
-            {currentScene.tone && <span>• {currentScene.tone}</span>}
-            {currentScene.sceneType && <span>• {currentScene.sceneType}</span>}
-          </div>
-        </div>
+        <EditableScene 
+          scene={currentScene} 
+          onSceneUpdate={handleSceneUpdate}
+        />
       )}
     </div>
   );
